@@ -2,6 +2,7 @@ package fi.haagahelia.bookstore.web;
 
 import fi.haagahelia.bookstore.domain.Book;
 import fi.haagahelia.bookstore.domain.BookStoreRepository;
+import fi.haagahelia.bookstore.domain.CategoryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class BookController {
 	public List<Book> books = new ArrayList<Book>();
 	@Autowired
 	private BookStoreRepository repository;
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	@RequestMapping("/booklist")
 	public String books(Model model) {
@@ -30,12 +33,14 @@ public class BookController {
 	@RequestMapping(value = "/add")
 	public String addBook(Model model){
 	 model.addAttribute("book", new Book());
+	 model.addAttribute("categories", categoryRepository.findAll());
 	 return "addbook";
 	}
 	
 	@RequestMapping(value = "/edit/{id}")
 	public String editBook(@PathVariable("id") Long id, Model model){
-		model.addAttribute("book", repository.findById(id));
+	 model.addAttribute("book", repository.findById(id));
+	 model.addAttribute("categories", categoryRepository.findAll());
 	 return "editbook";
 	}
 	
