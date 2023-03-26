@@ -9,6 +9,8 @@ import fi.haagahelia.bookstore.domain.Book;
 import fi.haagahelia.bookstore.domain.BookStoreRepository;
 import fi.haagahelia.bookstore.domain.Category;
 import fi.haagahelia.bookstore.domain.CategoryRepository;
+import fi.haagahelia.bookstore.domain.User;
+import fi.haagahelia.bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -18,7 +20,7 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(BookStoreRepository repository, CategoryRepository categoryRepo) {
+	public CommandLineRunner demo(BookStoreRepository repository, CategoryRepository categoryRepo, UserRepository userRepo ) {
 		return (args) -> {
 	 Category category1 = new Category("Crime");
 	 Category category2 = new Category("Drama");
@@ -36,6 +38,13 @@ public class BookstoreApplication {
 	 repository.save(book2);
 	 repository.save(book3);
 	 
+	 // Il0v$myc@t4EvEr
+	 User user1 = new User("Kiana", "$2a$10$Xp8gdIOy8wNpuImpEQ3.GuF5hq7F5RCi1peqMk.I/8AJVkn0.2cZm","ROLE_USER");
+	 // 13623%#@PoK
+	 User user2= new User("Ari", "$2a$10$GxyRBBkePbs.aBn3sdxPrOyD0iMpBEItI74e//.mpOw/TdS158gte","ROLE_ADMIN");
+	 userRepo.save(user1);
+	 userRepo.save(user2);
+
 	};
 	}
 

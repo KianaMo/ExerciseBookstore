@@ -4,7 +4,6 @@ import fi.haagahelia.bookstore.domain.Book;
 import fi.haagahelia.bookstore.domain.BookStoreRepository;
 import fi.haagahelia.bookstore.domain.CategoryRepository;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +32,7 @@ public class BookController {
 	public String books(Model model) {
 		model.addAttribute("books", repository.findAll());
 		return "booklist";
+		
 	}	
 	
 	// RESTful service to get all books
